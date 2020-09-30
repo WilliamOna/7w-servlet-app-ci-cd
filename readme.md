@@ -71,6 +71,10 @@ In the home directory, enter the following:
 
 5. optional: configure Tomcat users in (tomcat-users.xml)
 
+6. optional: copy war of servlet app to `webapps` folder in tomcat directory and navigate to
+
+   `{ip-address}:{port-number}/{name-of-war}/{path}`
+
 ## Install Git
 
 1. sudo yum -y install git
@@ -85,3 +89,56 @@ In the home directory, enter the following:
 > sudo yum install -y apache-maven
 
 > mvn --version
+
+# Jenkins
+
+1. Download Jenkins war
+
+> wget https://updates.jenkins-ci.org/stable/latest/jenkins.war
+
+2. move `jenkins.war` to `webapps` folder in tomcat folder
+
+> mv ~/jenkins.war /home/ec2-user/apache-tomcat-8.5.58/webapps
+
+3. Start tomcat server
+
+> sh {path-to-tomcat-folder}/bin/startup.sh
+
+4. navigate to {ec2-public-ip-address}:{tomcat-port-number}/jenkins in a browser
+
+5. Setup user account
+
+6. Install Plugins
+
+7. Create a new Pipeline
+
+8. Connect to GitHub Repo
+
+9. Create Jenkinsfile:
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+        stage('clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+        stage('package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('deploy'){
+        	steps{
+        		sh 'cp /home/ec2-user/.jenkins/workspace/AwesomePipeline/target/Car.war /home/ec2-user/apache-tomcat-8.5.51/webapps'
+        	}
+        }
+    }
+}
+
+```
+
+10. Click on build project button
