@@ -84,7 +84,7 @@ In the home directory, enter the following:
 
 > sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 
-> sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+> sudo sed -i s/\\\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 
 > sudo yum install -y apache-maven
 
@@ -133,7 +133,7 @@ pipeline {
         }
         stage('deploy'){
         	steps{
-        		sh 'cp /home/ec2-user/.jenkins/workspace/AwesomePipeline/target/Car.war /home/ec2-user/apache-tomcat-8.5.51/webapps'
+        		sh 'cp /home/ec2-user/.jenkins/workspace/{name-of-pipeline}/target/{name-of-war}.war /home/ec2-user/apache-tomcat-8.5.51/webapps'
         	}
         }
     }
