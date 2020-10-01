@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('pull code') {
-            steps {
-                sh 'git pull origin master'
-            }
-        }
         stage('stop old app') {
             steps {
                 echo 'Typically this is where I would stop my server'
