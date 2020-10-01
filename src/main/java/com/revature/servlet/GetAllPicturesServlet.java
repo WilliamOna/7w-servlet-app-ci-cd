@@ -12,25 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class GetAllPicturesServlet extends HttpServlet{
-	
-	//Hardcoded list of Picture ids
-	List<Integer> pictures = new ArrayList<>();
+public class GetAllPicturesServlet extends HttpServlet {
+
 	private static ObjectMapper om = new ObjectMapper();
-	
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//
+		// Hardcoded list of Picture ids
+		List<Integer> pictures = new ArrayList<>();
 		pictures.add(1);
 		pictures.add(10);
 		pictures.add(22);
 		pictures.add(55);
 		PrintWriter pw = resp.getWriter();
-		pw.println("secret message");
-		// pw.println(om.writeValueAsString(pictures));
+//		pw.println("secret message");
+		pw.println(om.writeValueAsString(pictures));
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
