@@ -31,6 +31,7 @@ public class GetAllPicturesServlet extends HttpServlet {
 		pictures.add(24);
 		pictures.add(42);
 		pictures.add(184613);
+		pictures.add(0);
 		
 		PrintWriter pw = resp.getWriter();
 //		pw.println("secret message");
